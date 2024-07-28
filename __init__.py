@@ -5,6 +5,8 @@
 # Big thanks to u/Glutanimate and u/yumenogotoshi for code suggestions
 # License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 
+#Fork information:
+# Little fixes by https://github.com/pkorytkin for support macos 14.5 and anki 24.06.3 with Qt 6.6.2.
 from aqt import *
 from aqt import mw
 from aqt.webview import AnkiWebView, QWebEngineView
@@ -104,8 +106,8 @@ def set_save_zoom(new_state, old_state, *args):
 numDeg = 0
 def AnkiWebView_eventFilter_wrapper(self, obj, event):
 	global numDeg
-	if (mw.app.keyboardModifiers() == Qt.ControlModifier and
-			event.type() == QEvent.Wheel):
+	if (mw.app.keyboardModifiers() == Qt.KeyboardModifier.ControlModifier and
+			event.type() == QEvent.Type.Wheel):
 		numDeg = numDeg + event.angleDelta().y()
 		if numDeg >= scrl_threshold:
 			zoom_in()
